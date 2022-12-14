@@ -12,7 +12,7 @@ class ProjectController extends Controller
     {
         // TASK: Currently this statement fails. Fix the underlying issue.
         Project::create([
-            'name' => $request->name
+            'name' => '$name',
         ]);
 
         return redirect('/')->with('success', 'Project created');
@@ -26,7 +26,9 @@ class ProjectController extends Controller
         //   where name = $request->old_name
 
         // Insert Eloquent statement below
-
+        Project::where('active')
+            ->update(['$old_name' => '$new_name']);
+        
         return redirect('/')->with('success', 'Projects updated');
     }
 
